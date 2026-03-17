@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>$WUPP — Wake Up & Push Purposefully</title>
+  <meta name="description" content="$WUPP is a community-driven meme coin on Solana built for the grinders, the hustlers, and everybody fighting their way to the top."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold:    #f0a500;
+      --gold2:   #ffc844;
+      --dark:    #080808;
+      --dark2:   #111111;
+      --dark3:   #1a1a1a;
+      --white:   #ffffff;
+      --gray:    #888888;
+      --gray2:   #333333;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      border-bottom: 1px solid #ffffff0d;
+      background: #080808cc;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+    .nav-logo span.w   { color: var(--gold); }
+    .nav-logo span.upp { color: var(--white); }
+
+    nav ul {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    nav ul a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--gold); }
+
+    .nav-btn {
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      padding: 10px 24px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .nav-btn:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle radial glow behind hero text */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, #f0a50010 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: #f0a50015;
+      border: 1px solid #f0a50044;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(100px, 18vw, 220px);
+      line-height: 0.9;
+      letter-spacing: -2px;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+    .hero-title .w   { color: var(--gold); }
+    .hero-title .upp { color: var(--white); }
+
+    .hero-sub {
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 16px;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    .hero-desc {
+      max-width: 580px;
+      margin: 32px auto 0;
+      font-size: 17px;
+      color: #aaaaaa;
+      line-height: 1.8;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 48px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.4s both;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 16px 40px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 16px 40px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid #ffffff33;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-stats {
+      display: flex;
+      gap: 60px;
+      justify-content: center;
+      margin-top: 80px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* Scroll indicator */
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--gray);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+      z-index: 1;
+    }
+    .scroll-down::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(var(--gold), transparent);
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 120px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 6vw, 80px);
+      line-height: 1;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 40px;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--dark2);
+      border-top: 1px solid #ffffff08;
+      border-bottom: 1px solid #ffffff08;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: #aaaaaa;
+      font-size: 17px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .about-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .pillar {
+      background: var(--dark3);
+      border: 1px solid #ffffff0d;
+      border-left: 3px solid var(--gold);
+      padding: 24px;
+      border-radius: 4px;
+      transition: border-color 0.2s;
+    }
+    .pillar:hover { border-color: var(--gold); border-left-color: var(--gold2); }
+    .pillar-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .pillar p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* ── HOW TO BUY ── */
+    .how-to-buy { max-width: 1200px; margin: 0 auto; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .step {
+      background: var(--dark2);
+      border: 1px solid #ffffff0d;
+      padding: 36px 28px;
+      border-radius: 8px;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .step:hover { border-color: var(--gold); transform: translateY(-4px); }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px;
+      color: #f0a50020;
+      line-height: 1;
+      position: absolute;
+      top: 16px;
+      right: 20px;
+    }
+    .step-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .step h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      letter-spacing: 2px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .step p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+    /* ── TOKENOMICS ── */
+    .tokenomics-section {
+      background: var(--dark2);
+      border-top: 1px solid #ffffff08;
+      border-bottom: 1px solid #ffffff08;
+    }
+
+    .tokenomics-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .token-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    .token-bars { display: flex; flex-direction: column; gap: 16px; }
+
+    .token-bar-item { }
+    .token-bar-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .token-bar-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .token-bar-pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      color: var(--gold);
+    }
+    .bar-track {
+      height: 6px;
+      background: #ffffff0d;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 3px;
+      transition: width 1s ease;
+    }
+
+    .token-info { }
+    .token-info-card {
+      background: var(--dark3);
+      border: 1px solid #ffffff0d;
+      padding: 32px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .token-info-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .token-detail {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #ffffff08;
+      font-size: 14px;
+    }
+    .token-detail:last-child { border-bottom: none; }
+    .token-detail span:first-child { color: var(--gray); }
+    .token-detail span:last-child { color: var(--white); font-weight: 700; }
+
+    /* ── ROADMAP ── */
+    .roadmap-inner { max-width: 1000px; margin: 0 auto; }
+
+    .roadmap-phases {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .phase {
+      background: var(--dark2);
+      border: 1px solid #ffffff0d;
+      padding: 36px;
+      border-radius: 8px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .phase:hover { border-color: var(--gold); }
+    .phase.active { border-color: var(--gold); }
+    .phase.active::before {
+      content: 'ACTIVE';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .phase-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .phase h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .phase ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .phase ul li {
+      font-size: 14px;
+      color: var(--gray);
+      padding-left: 20px;
+      position: relative;
+    }
+    .phase ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* ── CONTRACT ── */
+    .contract-section { text-align: center; }
+    .contract-inner { max-width: 800px; margin: 0 auto; }
+
+    .contract-box {
+      background: var(--dark2);
+      border: 1px solid #f0a50033;
+      border-radius: 8px;
+      padding: 32px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .contract-address {
+      font-family: 'Barlow', monospace;
+      font-size: 13px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      word-break: break-all;
+      text-align: left;
+    }
+    .copy-btn {
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      padding: 10px 24px;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover { background: var(--gold2); }
+
+    /* ── COMMUNITY ── */
+    .community-section {
+      background: var(--dark2);
+      border-top: 1px solid #ffffff08;
+      text-align: center;
+    }
+    .community-inner { max-width: 800px; margin: 0 auto; }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border: 1px solid #ffffff1a;
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .social-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .social-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 60px;
+      border-top: 1px solid #ffffff08;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+    .footer-logo span.w   { color: var(--gold); }
+    .footer-logo span.upp { color: var(--white); }
+
+    footer p {
+      font-size: 12px;
+      color: var(--gray2);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    footer small {
+      font-size: 11px;
+      color: #333;
+      letter-spacing: 1px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      nav ul { display: none; }
+      section { padding: 80px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .token-grid { grid-template-columns: 1fr; }
+      .roadmap-phases { grid-template-columns: 1fr; }
+      footer { flex-direction: column; padding: 40px 24px; }
+    }
+
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+      .about-pillars { grid-template-columns: 1fr; }
+      .hero-stats { gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo"><span class="w">W</span><span class="upp">UPP</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#how-to-buy">Buy</a></li>
+      <li><a href="#tokenomics">Tokenomics</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#community">Community</a></li>
+    </ul>
+    <a href="#how-to-buy" class="nav-btn">Buy $WUPP</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Now Live on Solana</div>
+      <h1 class="hero-title"><span class="w">W</span><span class="upp">UPP</span></h1>
+      <p class="hero-sub">Wake Up &amp; Push Purposefully</p>
+      <p class="hero-desc">
+        A community-driven meme coin on Solana built for the grinders, the hustlers, and everybody fighting their way to the top. Real utility. Real culture. Real movement.
+      </p>
+      <div class="hero-buttons">
+        <a href="#how-to-buy" class="btn-primary">Buy $WUPP</a>
+        <a href="wupp_whitepaper.pdf" class="btn-outline" target="_blank">Read Whitepaper</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">1B</div>
+          <div class="stat-label">Total Supply</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1%</div>
+          <div class="stat-label">Auto Burn</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">25%</div>
+          <div class="stat-label">Locked Liquidity</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">SOL</div>
+          <div class="stat-label">Network</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-down">Scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">What is WUPP</div>
+        <h2 class="section-title">More Than A Coin</h2>
+        <div class="divider"></div>
+        <p>
+          WUPP stands for <strong>Wake Up &amp; Push Purposefully.</strong> It's not just a ticker — it's a mindset. A movement for the people who refused to stay down, who wake up every day and push toward something better.
+        </p>
+        <p>
+          Built on Solana for lightning-fast, near-zero cost transactions, $WUPP combines the viral energy of meme culture with real-world utility — a marketplace, NFT integration, staking rewards, and community governance.
+        </p>
+        <p>
+          No rugs. No dumps. Liquidity locked, mint authority revoked, dev tokens vested. This is built to last.
+        </p>
+      </div>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-title">Marketplace</div>
+          <p>Buy and sell digital goods, services, and art using $WUPP as the native currency.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">NFTs</div>
+          <p>Original art tied directly to the coin. NFT holders unlock exclusive staking pools and governance.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Staking</div>
+          <p>Hold $WUPP, earn $WUPP. Rewarding long-term believers over short-term flippers.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Governance</div>
+          <p>Every holder has a voice. Vote on marketing spend, burns, partnerships, and future development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO BUY -->
+  <section id="how-to-buy">
+    <div class="how-to-buy">
+      <div class="section-label">Get Started</div>
+      <h2 class="section-title">How To Buy $WUPP</h2>
+      <div class="divider"></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-icon">👛</div>
+          <h3>Get A Wallet</h3>
+          <p>Download Phantom Wallet from phantom.app. Create your wallet and back up your seed phrase somewhere safe.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-icon">◎</div>
+          <h3>Buy SOL</h3>
+          <p>Purchase Solana (SOL) from any exchange — Coinbase, Binance, Kraken — and send it to your Phantom wallet.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-icon">🔄</div>
+          <h3>Go To Jupiter</h3>
+          <p>Visit jup.ag — the best DEX on Solana. Connect your Phantom wallet and swap SOL for $WUPP.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-icon">🔥</div>
+          <h3>Hold &amp; Earn</h3>
+          <p>You're in the WUPP Army. Stake your tokens, join the community, and grow with the movement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENOMICS -->
+  <section class="tokenomics-section" id="tokenomics">
+    <div class="tokenomics-inner">
+      <div class="section-label">Distribution</div>
+      <h2 class="section-title">Tokenomics</h2>
+      <div class="divider"></div>
+      <div class="token-grid">
+        <div class="token-bars">
+          <div class="token-bar-item">
+            <div class="token-bar-header">
+              <span class="token-bar-name">Public Sale</span>
+              <span class="token-bar-pct">40%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
+          </div>
+          <div class="token-bar-item">
+            <div class="token-bar-header">
+              <span class="token-bar-name">Liquidity Pool</span>
+              <span class="token-bar-pct">25%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:25%"></div></div>
+          </div>
+          <div class="token-bar-item">
+            <div class="token-bar-header">
+              <span class="token-bar-name">Marketing</span>
+              <span class="token-bar-pct">15%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
+          </div>
+          <div class="token-bar-item">
+            <div class="token-bar-header">
+              <span class="token-bar-name">Community Rewards</span>
+              <span class="token-bar-pct">10%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:10%"></div></div>
+          </div>
+          <div class="token-bar-item">
+            <div class="token-bar-header">
+              <span class="token-bar-name">Development</span>
+              <span class="token-bar-pct">7%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:7%"></div></div>
+          </div>
+          <div class="token-bar-item">
+            <div class="token-bar-header">
+              <span class="token-bar-name">Burn Reserve</span>
+              <span class="token-bar-pct">3%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:3%"></div></div>
+          </div>
+        </div>
+        <div class="token-info">
+          <div class="token-info-card">
+            <h3>Token Details</h3>
+            <div class="token-detail"><span>Name</span><span>WUPP</span></div>
+            <div class="token-detail"><span>Ticker</span><span>$WUPP</span></div>
+            <div class="token-detail"><span>Network</span><span>Solana</span></div>
+            <div class="token-detail"><span>Standard</span><span>SPL Token</span></div>
+            <div class="token-detail"><span>Total Supply</span><span>1,000,000,000</span></div>
+            <div class="token-detail"><span>Burn Rate</span><span>1% per transaction</span></div>
+            <div class="token-detail"><span>Liquidity</span><span>Locked</span></div>
+            <div class="token-detail"><span>Mint Authority</span><span>Revoked</span></div>
+          </div>
+          <div class="token-info-card">
+            <h3>Security</h3>
+            <div class="token-detail"><span>Dev Vesting</span><span>90 day cliff</span></div>
+            <div class="token-detail"><span>Rug Pull</span><span>Impossible</span></div>
+            <div class="token-detail"><span>Anti-Snipe</span><span>Active</span></div>
+            <div class="token-detail"><span>Audit</span><span>Pending CertiK</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="roadmap-inner">
+      <div class="section-label">The Plan</div>
+      <h2 class="section-title">Roadmap</h2>
+      <div class="divider"></div>
+      <div class="roadmap-phases">
+        <div class="phase active">
+          <div class="phase-num">Phase 01</div>
+          <h3>Build</h3>
+          <ul>
+            <li>Smart contract development</li>
+            <li>Website launch</li>
+            <li>Twitter &amp; Telegram launch</li>
+            <li>Whitepaper published</li>
+            <li>Community building</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-num">Phase 02</div>
+          <h3>Launch</h3>
+          <ul>
+            <li>Deploy on Solana via Pump.fun</li>
+            <li>Lock liquidity on Raydium</li>
+            <li>List on Jupiter DEX</li>
+            <li>CoinGecko &amp; CMC submission</li>
+            <li>First NFT art drop</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-num">Phase 03</div>
+          <h3>Grow</h3>
+          <ul>
+            <li>Influencer &amp; KOL campaign</li>
+            <li>TikTok &amp; Twitter viral push</li>
+            <li>WUPP Marketplace beta</li>
+            <li>Staking goes live</li>
+            <li>Tier 2 CEX listings</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="phase-num">Phase 04</div>
+          <h3>Dominate</h3>
+          <ul>
+            <li>Tier 1 CEX listings</li>
+            <li>WUPP clothing line drops</li>
+            <li>Governance DAO launch</li>
+            <li>Major brand partnerships</li>
+            <li>WUPP becomes a household name</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRACT -->
+  <section class="contract-section" style="background: var(--dark2); border-top: 1px solid #ffffff08;">
+    <div class="contract-inner">
+      <div class="section-label">Verify Us</div>
+      <h2 class="section-title">Contract Address</h2>
+      <div class="divider" style="margin: 0 auto 20px;"></div>
+      <p style="color: var(--gray); font-size: 15px;">Always verify the contract address before buying. Never trust a DM.</p>
+      <div class="contract-box">
+        <div class="contract-address" id="contract-addr">Contract address will be posted here on launch day. Follow Twitter for the announcement.</div>
+        <button class="copy-btn" onclick="copyContract()">Copy</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="community-section" id="community">
+    <div class="community-inner">
+      <div class="section-label">Join Us</div>
+      <h2 class="section-title">The WUPP Army</h2>
+      <div class="divider" style="margin: 0 auto 20px;"></div>
+      <p style="color: var(--gray); font-size: 17px; max-width: 500px; margin: 0 auto;">
+        We build together. We grow together. Join the movement and be part of something real.
+      </p>
+      <div class="social-links">
+        <a href="https://twitter.com/WUPPcoin" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter / X
+        </a>
+        <a href="https://t.me/WUPParmy" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.484c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 14.367l-2.95-.924c-.64-.203-.654-.64.136-.954l11.532-4.448c.532-.194.998.13.584.207z"/></svg>
+          Telegram
+        </a>
+        <a href="wupp_whitepaper.pdf" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+          Whitepaper
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><span class="w">W</span><span class="upp">UPP</span></div>
+    <p>$WUPP is a community meme token on Solana. It is not a security, investment product, or financial instrument. Always do your own research. Never invest more than you can afford to lose.</p>
+    <small>© 2026 WUPP. All rights reserved.</small>
+  </footer>
+
+  <script>
+    // ── COPY CONTRACT ──
+    // Works on both http and https with fallback
+    function copyContract() {
+      const addr = document.getElementById('contract-addr').innerText;
+      const btn  = document.querySelector('.copy-btn');
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(addr).then(() => {
+          btn.innerText = 'Copied!';
+          setTimeout(() => btn.innerText = 'Copy', 2000);
+        }).catch(() => fallbackCopy(addr, btn));
+      } else {
+        fallbackCopy(addr, btn);
+      }
+    }
+
+    function fallbackCopy(text, btn) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity  = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        btn.innerText = 'Copied!';
+      } catch(e) {
+        btn.innerText = 'Copy manually';
+      }
+      document.body.removeChild(ta);
+      setTimeout(() => btn.innerText = 'Copy', 2000);
+    }
+
+    // ── TOKENOMICS BAR ANIMATION ──
+    // Store target widths, set to 0 on load, animate in when visible
+    const bars = document.querySelectorAll('.bar-fill');
+    const targets = [];
+
+    bars.forEach(bar => {
+      targets.push(bar.style.width);
+      bar.style.width = '0%';
+      bar.style.transition = 'none';
+    });
+
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.bar-fill').forEach((bar, i) => {
+            const allBars = document.querySelectorAll('.bar-fill');
+            const idx = Array.from(allBars).indexOf(bar);
+            setTimeout(() => {
+              bar.style.transition = 'width 1s ease';
+              bar.style.width = targets[idx];
+            }, i * 120);
+          });
+          barObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.token-bars').forEach(el => barObserver.observe(el));
+
+    // ── SMOOTH NAV HIGHLIGHT ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav ul a');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.style.color = '';
+            if (link.getAttribute('href') === '#' + entry.target.id) {
+              link.style.color = '#f0a500';
+            }
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    sections.forEach(s => navObserver.observe(s));
+  </script>
+
+</body>
+</html>
