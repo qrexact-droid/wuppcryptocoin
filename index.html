@@ -518,6 +518,62 @@
       left: 0;
       color: var(--gold);
     }
+    .phase ul li.done {
+      color: #ffffff99;
+      text-decoration: none;
+    }
+    .phase ul li.done::before {
+      content: '✅';
+      font-size: 12px;
+      left: -2px;
+    }
+    .phase ul li.in-progress {
+      color: var(--gold);
+    }
+    .phase ul li.in-progress::before {
+      content: '⚡';
+      font-size: 12px;
+      left: -2px;
+    }
+
+    /* ── LAUNCH COUNTDOWN ── */
+    .countdown-wrap {
+      margin-top: 40px;
+      text-align: center;
+      padding: 28px;
+      background: var(--dark2);
+      border: 1px solid #f0a50033;
+      border-radius: 8px;
+    }
+    .countdown-label {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 3px;
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .countdown-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: #fff;
+      line-height: 1;
+    }
+    .countdown-unit-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--gray);
+    }
 
     /* ── CONTRACT ── */
     .contract-section { text-align: center; }
@@ -862,11 +918,11 @@
           <div class="phase-num">Phase 01</div>
           <h3>Build</h3>
           <ul>
-            <li>Smart contract development</li>
-            <li>Website launch</li>
-            <li>Twitter &amp; Telegram launch</li>
-            <li>Whitepaper published</li>
-            <li>Community building</li>
+            <li class="done">Smart contract development</li>
+            <li class="done">Website launch</li>
+            <li class="done">Twitter &amp; Telegram launch</li>
+            <li class="done">Whitepaper published</li>
+            <li class="in-progress">Community building</li>
           </ul>
         </div>
         <div class="phase">
@@ -903,6 +959,30 @@
           </ul>
         </div>
       </div>
+
+      <!-- LAUNCH COUNTDOWN -->
+      <div class="countdown-wrap">
+        <div class="countdown-label">🚀 Phase 02 Launch Countdown</div>
+        <div class="countdown-timer">
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-days">--</div>
+            <div class="countdown-unit-label">DAYS</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-hours">--</div>
+            <div class="countdown-unit-label">HOURS</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-mins">--</div>
+            <div class="countdown-unit-label">MINUTES</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-num" id="cd-secs">--</div>
+            <div class="countdown-unit-label">SECONDS</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1037,5 +1117,32 @@
     sections.forEach(s => navObserver.observe(s));
   </script>
 
+  <script>
+    // WUPP Phase 02 Launch Countdown — target: June 20, 2026
+    (function() {
+      var target = new Date('2026-06-20T00:00:00-07:00').getTime();
+      function tick() {
+        var now = Date.now();
+        var diff = target - now;
+        if (diff <= 0) {
+          document.getElementById('cd-days').textContent = '00';
+          document.getElementById('cd-hours').textContent = '00';
+          document.getElementById('cd-mins').textContent = '00';
+          document.getElementById('cd-secs').textContent = '00';
+          return;
+        }
+        var days  = Math.floor(diff / 86400000);
+        var hours = Math.floor((diff % 86400000) / 3600000);
+        var mins  = Math.floor((diff % 3600000) / 60000);
+        var secs  = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+        document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+        document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+        document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
 </body>
 </html>
