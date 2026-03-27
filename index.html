@@ -1,1148 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>$WUPP — Wake Up & Push Purposefully</title>
-  <meta name="description" content="$WUPP is a community-driven meme coin on Solana built for the grinders, the hustlers, and everybody fighting their way to the top."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --gold:    #f0a500;
-      --gold2:   #ffc844;
-      --dark:    #080808;
-      --dark2:   #111111;
-      --dark3:   #1a1a1a;
-      --white:   #ffffff;
-      --gray:    #888888;
-      --gray2:   #333333;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>$WUPP — Wake Up & Push Purposefully</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & BASE ── */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+ --gold:#C9A84C;
+ --gold2:#E8C96A;
+ --gold-dim:rgba(201,168,76,0.12);
+ --gold-border:rgba(201,168,76,0.25);
+ --black:#0a0a0a;
+ --black2:#111111;
+ --black3:#181818;
+ --white:#FFFFFF;
+ --muted:rgba(255,255,255,0.5);
+ --border:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── TICKER ── */
+.ticker{background:var(--gold);padding:8px 0;overflow:hidden;white-space:nowrap;}
+.ticker-track{display:inline-flex;animation:ticker 22s linear infinite;}
+.ticker-track span{font-size:11px;font-weight:700;color:#0a0a0a;letter-spacing:2px;text-transform:uppercase;padding:0 30px;}
+.ticker-track span::after{content:'★';margin-left:30px;opacity:0.5;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    html { scroll-behavior: smooth; }
+/* ── NAV ── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:0.5px solid var(--border);background:rgba(10,10,10,0.96);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#0a0a0a;font-family:'Syne',sans-serif;}
+.logo-name{font-size:18px;font-weight:700;letter-spacing:1px;font-family:'Syne',sans-serif;}
+.nav-links{display:flex;gap:4px;list-style:none;}
+.nav-links a{font-size:12px;color:rgba(255,255,255,0.6);text-decoration:none;padding:6px 14px;border:0.5px solid transparent;border-radius:999px;transition:all .2s;letter-spacing:0.3px;}
+.nav-links a:hover{color:#fff;border-color:var(--gold-border);background:var(--gold-dim);}
+.nav-cta{background:var(--gold);color:#0a0a0a;border:none;padding:10px 22px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:0.5px;font-family:'Space Grotesk',sans-serif;transition:background .2s;}
+.nav-cta:hover{background:var(--gold2);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--white);display:block;transition:all .3s;}
 
-    body {
-      background: var(--dark);
-      color: var(--white);
-      font-family: 'Barlow', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+/* ── HERO ── */
+.hero{padding:80px 40px 60px;text-align:center;background:radial-gradient(ellipse at 50% -10%,rgba(201,168,76,0.1) 0%,transparent 60%);position:relative;overflow:hidden;}
+.hero::before{content:'WUPP';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:260px;font-weight:800;font-family:'Syne',sans-serif;color:rgba(201,168,76,0.03);pointer-events:none;white-space:nowrap;letter-spacing:-8px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.1);border:0.5px solid var(--gold-border);border-radius:4px;padding:6px 16px;margin-bottom:28px;}
+.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);}
+.eyebrow-text{font-size:11px;color:var(--gold);font-weight:700;letter-spacing:3px;text-transform:uppercase;}
+.hero h1{font-size:68px;font-weight:800;line-height:1;letter-spacing:-2px;margin-bottom:10px;font-family:'Syne',sans-serif;}
+.hero h1 span{color:var(--gold);}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:520px;margin:0 auto 36px;}
+.hero-btns{display:flex;flex-direction:column;align-items:center;gap:10px;max-width:360px;margin:0 auto 48px;}
+.btn-gold{width:100%;padding:15px;background:var(--gold);color:#0a0a0a;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Space Grotesk',sans-serif;transition:background .2s,transform .1s;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px);}
+.btn-dark{width:100%;padding:14px;background:var(--black3);color:rgba(255,255,255,0.8);border:0.5px solid var(--border);border-radius:10px;font-size:15px;cursor:pointer;font-family:'Space Grotesk',sans-serif;text-decoration:none;display:block;text-align:center;transition:border-color .2s;}
+.btn-dark:hover{border-color:var(--gold-border);color:#fff;}
+.hero-stats{display:flex;justify-content:center;border-top:0.5px solid var(--border);padding-top:32px;}
+.stat{flex:1;max-width:130px;padding:0 12px;border-right:0.5px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-val{font-size:24px;font-weight:700;color:var(--gold);font-family:'Syne',sans-serif;}
+.stat-lbl{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:1px;text-transform:uppercase;}
 
+/* ── COUNTDOWN ── */
+.countdown{padding:48px 40px;background:var(--black2);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);text-align:center;}
+.cd-eyebrow{font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;font-weight:700;}
+.cd-title{font-size:22px;font-weight:700;margin-bottom:28px;font-family:'Syne',sans-serif;}
+.cd-grid{display:flex;justify-content:center;gap:14px;}
+.cd-box{background:var(--black3);border:0.5px solid var(--gold-border);border-radius:12px;padding:18px 22px;min-width:82px;}
+.cd-num{font-size:36px;font-weight:700;color:var(--gold);line-height:1;font-family:'Syne',sans-serif;font-variant-numeric:tabular-nums;}
+.cd-label{font-size:10px;color:var(--muted);margin-top:6px;letter-spacing:2px;text-transform:uppercase;}
 
+/* ── CONTRACT ── */
+.contract{padding:32px 40px;text-align:center;border-bottom:0.5px solid var(--border);}
+.contract-title{font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:14px;font-weight:600;}
+.contract-box{background:var(--black3);border:0.5px solid var(--gold-border);border-radius:10px;padding:14px 22px;display:inline-flex;align-items:center;gap:12px;font-size:14px;color:var(--gold);cursor:pointer;transition:background .2s;font-family:'Space Grotesk',sans-serif;}
+.contract-box:hover{background:var(--gold-dim);}
+.contract-note{font-size:12px;color:var(--muted);margin-top:12px;}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 60px;
-      border-bottom: 1px solid #ffffff0d;
-      background: #080808cc;
-      backdrop-filter: blur(12px);
-    }
+/* ── SECTION BASE ── */
+.section{padding:64px 40px;}
+.section-eyebrow{font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;font-weight:600;}
+.section-title{font-size:36px;font-weight:700;line-height:1.15;margin-bottom:24px;font-family:'Syne',sans-serif;}
+.section-title span{color:var(--gold);}
 
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 32px;
-      letter-spacing: 2px;
-    }
-    .nav-logo span.w   { color: var(--gold); }
-    .nav-logo span.upp { color: var(--white); }
+/* ── ABOUT ── */
+.about{background:var(--black);}
+.about-body{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:28px;max-width:680px;}
+.feat-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.feat-card{background:var(--black2);border:0.5px solid var(--border);border-radius:14px;padding:20px;display:flex;align-items:flex-start;gap:16px;transition:border-color .2s;}
+.feat-card:hover{border-color:var(--gold-border);}
+.feat-icon{width:46px;height:46px;background:var(--gold-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.feat-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.feat-title{font-size:15px;font-weight:600;margin-bottom:5px;font-family:'Syne',sans-serif;}
+.feat-desc{font-size:13px;color:var(--muted);line-height:1.6;}
 
-    nav ul {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-    nav ul a {
-      color: var(--gray);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    nav ul a:hover { color: var(--gold); }
+/* ── HOW TO BUY ── */
+.buy{background:var(--black2);border-top:0.5px solid var(--border);}
+.steps{display:flex;flex-direction:column;gap:0;margin-top:24px;max-width:620px;}
+.step{display:flex;gap:20px;padding-bottom:28px;position:relative;}
+.step:not(:last-child)::after{content:'';position:absolute;left:19px;top:42px;width:1px;height:calc(100% - 18px);background:var(--gold-border);}
+.step-num{width:40px;height:40px;background:var(--gold-dim);border:0.5px solid var(--gold-border);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;font-family:'Syne',sans-serif;}
+.step-title{font-size:16px;font-weight:600;margin-bottom:6px;font-family:'Syne',sans-serif;}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.7;}
 
-    .nav-btn {
-      background: var(--gold);
-      color: var(--dark);
-      border: none;
-      padding: 10px 24px;
-      font-family: 'Barlow', sans-serif;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .nav-btn:hover { background: var(--gold2); transform: translateY(-1px); }
+/* ── TOKENOMICS ── */
+.tokenomics{background:var(--black);border-top:0.5px solid var(--border);}
+.tok-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.tok-bars{display:flex;flex-direction:column;gap:14px;}
+.tok-row{display:flex;align-items:center;gap:14px;}
+.tok-name{font-size:13px;color:var(--white);min-width:150px;}
+.tok-track{flex:1;background:var(--black3);border-radius:999px;height:5px;overflow:hidden;}
+.tok-fill{height:100%;border-radius:999px;background:var(--gold);}
+.tok-pct{font-size:13px;color:var(--gold);font-weight:600;min-width:34px;text-align:right;}
+.tok-details{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.tok-card{background:var(--black2);border:0.5px solid var(--border);border-radius:10px;padding:14px 16px;}
+.tok-card-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.tok-card-val{font-size:14px;font-weight:600;color:var(--white);}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 40px 80px;
-      position: relative;
-      overflow: hidden;
-    }
+/* ── ROADMAP ── */
+.roadmap{background:var(--black2);border-top:0.5px solid var(--border);}
+.phases{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px;}
+.phase{background:var(--black3);border:0.5px solid var(--border);border-radius:14px;padding:22px;transition:border-color .2s;}
+.phase:hover{border-color:var(--gold-border);}
+.phase-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.phase-num{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.phase-name{font-size:16px;font-weight:700;font-family:'Syne',sans-serif;}
+.phase-badge{margin-left:auto;font-size:10px;padding:3px 10px;border-radius:999px;font-weight:600;letter-spacing:0.5px;}
+.badge-live{background:var(--gold-dim);color:var(--gold);border:0.5px solid var(--gold-border);}
+.badge-soon{background:rgba(255,255,255,0.05);color:var(--muted);border:0.5px solid var(--border);}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.phase-items li{font-size:13px;color:var(--muted);padding-left:16px;position:relative;line-height:1.5;}
+.phase-items li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:11px;}
 
-    /* Subtle radial glow behind hero text */
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, #f0a50010 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
+/* ── COMMUNITY ── */
+.community{padding:72px 40px;text-align:center;border-top:0.5px solid var(--border);}
+.community h2{font-size:44px;font-weight:800;line-height:1.1;margin-bottom:10px;font-family:'Syne',sans-serif;}
+.community h2 span{color:var(--gold);}
+.community p{font-size:15px;color:var(--muted);margin-bottom:28px;line-height:1.7;max-width:460px;margin-left:auto;margin-right:auto;}
+.comm-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.comm-solid{padding:12px 28px;border-radius:999px;background:var(--gold);color:#0a0a0a;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Space Grotesk',sans-serif;text-decoration:none;display:inline-block;transition:background .2s;}
+.comm-solid:hover{background:var(--gold2);}
+.comm-ghost{padding:12px 28px;border-radius:999px;background:transparent;color:rgba(255,255,255,0.7);font-size:14px;border:0.5px solid var(--border);cursor:pointer;font-family:'Space Grotesk',sans-serif;text-decoration:none;display:inline-block;transition:border-color .2s,color .2s;}
+.comm-ghost:hover{border-color:var(--gold-border);color:#fff;}
 
-    .hero-content { position: relative; z-index: 1; }
+/* ── FOOTER ── */
+.footer{border-top:0.5px solid var(--border);padding:28px 40px;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;background:var(--black);}
+.footer-left{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;font-family:'Syne',sans-serif;}
+.footer-logo-mark{width:28px;height:28px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#0a0a0a;font-family:'Syne',sans-serif;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;max-width:520px;}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-disc{font-size:11px;color:rgba(255,255,255,0.2);line-height:1.7;max-width:360px;}
 
-    .hero-badge {
-      display: inline-block;
-      background: #f0a50015;
-      border: 1px solid #f0a50044;
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      padding: 8px 20px;
-      border-radius: 100px;
-      margin-bottom: 32px;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(100px, 18vw, 220px);
-      line-height: 0.9;
-      letter-spacing: -2px;
-      animation: fadeUp 0.8s ease 0.1s both;
-    }
-    .hero-title .w   { color: var(--gold); }
-    .hero-title .upp { color: var(--white); }
-
-    .hero-sub {
-      font-size: clamp(14px, 2vw, 18px);
-      font-weight: 600;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-top: 16px;
-      animation: fadeUp 0.8s ease 0.2s both;
-    }
-
-    .hero-desc {
-      max-width: 580px;
-      margin: 32px auto 0;
-      font-size: 17px;
-      color: #aaaaaa;
-      line-height: 1.8;
-      animation: fadeUp 0.8s ease 0.3s both;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      margin-top: 48px;
-      flex-wrap: wrap;
-      animation: fadeUp 0.8s ease 0.4s both;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--dark);
-      padding: 16px 40px;
-      font-family: 'Barlow', sans-serif;
-      font-weight: 900;
-      font-size: 14px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      padding: 16px 40px;
-      font-family: 'Barlow', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      border: 1px solid #ffffff33;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    .hero-stats {
-      display: flex;
-      gap: 60px;
-      justify-content: center;
-      margin-top: 80px;
-      flex-wrap: wrap;
-      animation: fadeUp 0.8s ease 0.5s both;
-    }
-    .stat { text-align: center; }
-    .stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 42px;
-      color: var(--gold);
-      letter-spacing: 2px;
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-top: 4px;
-    }
-
-    /* Scroll indicator */
-    .scroll-down {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: var(--gray);
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      animation: bounce 2s infinite;
-      z-index: 1;
-    }
-    .scroll-down::after {
-      content: '';
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(var(--gold), transparent);
-    }
-
-    /* ── SECTION BASE ── */
-    section {
-      padding: 120px 60px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 6vw, 80px);
-      line-height: 1;
-      letter-spacing: 2px;
-      margin-bottom: 24px;
-    }
-
-    .divider {
-      width: 60px;
-      height: 3px;
-      background: var(--gold);
-      margin-bottom: 40px;
-    }
-
-    /* ── ABOUT ── */
-    .about {
-      background: var(--dark2);
-      border-top: 1px solid #ffffff08;
-      border-bottom: 1px solid #ffffff08;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: center;
-    }
-
-    .about-text p {
-      color: #aaaaaa;
-      font-size: 17px;
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
-
-    .about-pillars {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .pillar {
-      background: var(--dark3);
-      border: 1px solid #ffffff0d;
-      border-left: 3px solid var(--gold);
-      padding: 24px;
-      border-radius: 4px;
-      transition: border-color 0.2s;
-    }
-    .pillar:hover { border-color: var(--gold); border-left-color: var(--gold2); }
-    .pillar-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      color: var(--gold);
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-    .pillar p { font-size: 14px; color: var(--gray); line-height: 1.6; }
-
-    /* ── HOW TO BUY ── */
-    .how-to-buy { max-width: 1200px; margin: 0 auto; }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-top: 60px;
-    }
-
-    .step {
-      background: var(--dark2);
-      border: 1px solid #ffffff0d;
-      padding: 36px 28px;
-      border-radius: 8px;
-      position: relative;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .step:hover { border-color: var(--gold); transform: translateY(-4px); }
-
-    .step-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 64px;
-      color: #f0a50020;
-      line-height: 1;
-      position: absolute;
-      top: 16px;
-      right: 20px;
-    }
-    .step-icon {
-      font-size: 32px;
-      margin-bottom: 16px;
-    }
-    .step h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 24px;
-      letter-spacing: 2px;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-    .step p { font-size: 14px; color: var(--gray); line-height: 1.7; }
-
-    /* ── TOKENOMICS ── */
-    .tokenomics-section {
-      background: var(--dark2);
-      border-top: 1px solid #ffffff08;
-      border-bottom: 1px solid #ffffff08;
-    }
-
-    .tokenomics-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .token-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-      margin-top: 60px;
-    }
-
-    .token-bars { display: flex; flex-direction: column; gap: 16px; }
-
-    .token-bar-item { }
-    .token-bar-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    .token-bar-name {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-    .token-bar-pct {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
-      color: var(--gold);
-    }
-    .bar-track {
-      height: 6px;
-      background: #ffffff0d;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%;
-      background: var(--gold);
-      border-radius: 3px;
-      transition: width 1s ease;
-    }
-
-    .token-info { }
-    .token-info-card {
-      background: var(--dark3);
-      border: 1px solid #ffffff0d;
-      padding: 32px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-    .token-info-card h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      letter-spacing: 2px;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-    .token-detail {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #ffffff08;
-      font-size: 14px;
-    }
-    .token-detail:last-child { border-bottom: none; }
-    .token-detail span:first-child { color: var(--gray); }
-    .token-detail span:last-child { color: var(--white); font-weight: 700; }
-
-    /* ── ROADMAP ── */
-    .roadmap-inner { max-width: 1000px; margin: 0 auto; }
-
-    .roadmap-phases {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 60px;
-    }
-
-    .phase {
-      background: var(--dark2);
-      border: 1px solid #ffffff0d;
-      padding: 36px;
-      border-radius: 8px;
-      position: relative;
-      transition: border-color 0.2s;
-    }
-    .phase:hover { border-color: var(--gold); }
-    .phase.active { border-color: var(--gold); }
-    .phase.active::before {
-      content: 'ACTIVE';
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: var(--gold);
-      color: var(--dark);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      padding: 4px 10px;
-      border-radius: 2px;
-    }
-
-    .phase-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 13px;
-      letter-spacing: 4px;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-    .phase h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
-    .phase ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .phase ul li {
-      font-size: 14px;
-      color: var(--gray);
-      padding-left: 20px;
-      position: relative;
-    }
-    .phase ul li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-    }
-    .phase ul li.done {
-      color: #ffffff99;
-      text-decoration: none;
-    }
-    .phase ul li.done::before {
-      content: '✅';
-      font-size: 12px;
-      left: -2px;
-    }
-    .phase ul li.in-progress {
-      color: var(--gold);
-    }
-    .phase ul li.in-progress::before {
-      content: '⚡';
-      font-size: 12px;
-      left: -2px;
-    }
-
-    /* ── LAUNCH COUNTDOWN ── */
-    .countdown-wrap {
-      margin-top: 40px;
-      text-align: center;
-      padding: 28px;
-      background: var(--dark2);
-      border: 1px solid #f0a50033;
-      border-radius: 8px;
-    }
-    .countdown-label {
-      font-family: 'Bebas Neue', sans-serif;
-      letter-spacing: 3px;
-      font-size: 13px;
-      color: var(--gold);
-      margin-bottom: 14px;
-    }
-    .countdown-timer {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-    }
-    .countdown-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-    .countdown-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      color: #fff;
-      line-height: 1;
-    }
-    .countdown-unit-label {
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: var(--gray);
-    }
-
-    /* ── CONTRACT ── */
-    .contract-section { text-align: center; }
-    .contract-inner { max-width: 800px; margin: 0 auto; }
-
-    .contract-box {
-      background: var(--dark2);
-      border: 1px solid #f0a50033;
-      border-radius: 8px;
-      padding: 32px;
-      margin-top: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .contract-address {
-      font-family: 'Barlow', monospace;
-      font-size: 13px;
-      color: var(--gold);
-      letter-spacing: 1px;
-      word-break: break-all;
-      text-align: left;
-    }
-    .copy-btn {
-      background: var(--gold);
-      color: var(--dark);
-      border: none;
-      padding: 10px 24px;
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 4px;
-      white-space: nowrap;
-      transition: background 0.2s;
-    }
-    .copy-btn:hover { background: var(--gold2); }
-
-    /* ── COMMUNITY ── */
-    .community-section {
-      background: var(--dark2);
-      border-top: 1px solid #ffffff08;
-      text-align: center;
-    }
-    .community-inner { max-width: 800px; margin: 0 auto; }
-
-    .social-links {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      margin-top: 48px;
-      flex-wrap: wrap;
-    }
-
-    .social-btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 32px;
-      border: 1px solid #ffffff1a;
-      border-radius: 6px;
-      text-decoration: none;
-      color: var(--white);
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      transition: border-color 0.2s, color 0.2s, transform 0.2s;
-    }
-    .social-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-    .social-btn svg { width: 20px; height: 20px; fill: currentColor; }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 40px 60px;
-      border-top: 1px solid #ffffff08;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      letter-spacing: 2px;
-    }
-    .footer-logo span.w   { color: var(--gold); }
-    .footer-logo span.upp { color: var(--white); }
-
-    footer p {
-      font-size: 12px;
-      color: var(--gray2);
-      max-width: 500px;
-      line-height: 1.6;
-    }
-
-    footer small {
-      font-size: 11px;
-      color: #333;
-      letter-spacing: 1px;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(8px); }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      nav ul { display: none; }
-      section { padding: 80px 24px; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .token-grid { grid-template-columns: 1fr; }
-      .roadmap-phases { grid-template-columns: 1fr; }
-      footer { flex-direction: column; padding: 40px 24px; }
-    }
-
-    @media (max-width: 600px) {
-      .steps { grid-template-columns: 1fr; }
-      .about-pillars { grid-template-columns: 1fr; }
-      .hero-stats { gap: 30px; }
-    }
-  </style>
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+ .nav{padding:14px 20px;}
+ .nav-links,.nav-cta{display:none;}
+ .hamburger{display:flex;}
+ .hero{padding:60px 20px 48px;}
+ .hero h1{font-size:42px;}
+ .hero::before{font-size:120px;}
+ .section{padding:48px 20px;}
+ .feat-cards{grid-template-columns:1fr;}
+ .tok-layout{grid-template-columns:1fr;}
+ .phases{grid-template-columns:1fr;}
+ .community{padding:52px 20px;}
+ .community h2{font-size:32px;}
+ .footer{padding:24px 20px;flex-direction:column;}
+ .countdown{padding:36px 20px;}
+ .cd-box{min-width:64px;padding:14px 16px;}
+ .cd-num{font-size:28px;}
+ .contract{padding:24px 20px;}
+}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo"><span class="w">W</span><span class="upp">UPP</span></div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#how-to-buy">Buy</a></li>
-      <li><a href="#tokenomics">Tokenomics</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#community">Community</a></li>
-    </ul>
-    <a href="#how-to-buy" class="nav-btn">Buy $WUPP</a>
-  </nav>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+ <div class="ticker-track">
+ <span>WAKE UP</span><span>PUSH PURPOSEFULLY</span><span>$WUPP ON SOLANA</span><span>1B SUPPLY</span><span>LIQUIDITY LOCKED</span><span>NO RUG</span><span>REAL UTILITY</span><span>WUPP ARMY</span><span>MINT REVOKED</span><span>1% AUTO BURN</span>
+ <span>WAKE UP</span><span>PUSH PURPOSEFULLY</span><span>$WUPP ON SOLANA</span><span>1B SUPPLY</span><span>LIQUIDITY LOCKED</span><span>NO RUG</span><span>REAL UTILITY</span><span>WUPP ARMY</span><span>MINT REVOKED</span><span>1% AUTO BURN</span>
+ </div>
+</div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">Now Live on Solana</div>
-      <h1 class="hero-title"><span class="w">W</span><span class="upp">UPP</span></h1>
-      <p class="hero-sub">Wake Up &amp; Push Purposefully</p>
-      <p class="hero-desc">
-        A community-driven meme coin on Solana built for the grinders, the hustlers, and everybody fighting their way to the top. Real utility. Real culture. Real movement.
-      </p>
-      <div class="hero-buttons">
-        <a href="#how-to-buy" class="btn-primary">Buy $WUPP</a>
-        <a href="wupp_whitepaper.pdf" class="btn-outline" target="_blank">Read Whitepaper</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num">1B</div>
-          <div class="stat-label">Total Supply</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">1%</div>
-          <div class="stat-label">Auto Burn</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">25%</div>
-          <div class="stat-label">Locked Liquidity</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">SOL</div>
-          <div class="stat-label">Network</div>
-        </div>
-      </div>
-    </div>
-    <div class="scroll-down">Scroll</div>
-  </section>
+<!-- NAV -->
+<nav class="nav">
+ <div class="nav-logo">
+ <div class="logo-mark">W</div>
+ <span class="logo-name">WUPP</span>
+ </div>
+ <ul class="nav-links">
+ <li><a href="#about">About</a></li>
+ <li><a href="#buy">Buy</a></li>
+ <li><a href="#tokenomics">Tokenomics</a></li>
+ <li><a href="#roadmap">Roadmap</a></li>
+ <li><a href="#community">Community</a></li>
+ </ul>
+ <button class="nav-cta" onclick="document.getElementById('buy').scrollIntoView({behavior:'smooth'})">Buy $WUPP</button>
+ <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+ <span></span><span></span><span></span>
+ </div>
+</nav>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="section-label">What is WUPP</div>
-        <h2 class="section-title">More Than A Coin</h2>
-        <div class="divider"></div>
-        <p>
-          WUPP stands for <strong>Wake Up &amp; Push Purposefully.</strong> It's not just a ticker — it's a mindset. A movement for the people who refused to stay down, who wake up every day and push toward something better.
-        </p>
-        <p>
-          Built on Solana for lightning-fast, near-zero cost transactions, $WUPP combines the viral energy of meme culture with real-world utility — a marketplace, NFT integration, staking rewards, and community governance.
-        </p>
-        <p>
-          No rugs. No dumps. Liquidity locked, mint authority revoked, dev tokens vested. This is built to last.
-        </p>
-      </div>
-      <div class="about-pillars">
-        <div class="pillar">
-          <div class="pillar-title">Marketplace</div>
-          <p>Buy and sell digital goods, services, and art using $WUPP as the native currency.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-title">NFTs</div>
-          <p>Original art tied directly to the coin. NFT holders unlock exclusive staking pools and governance.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-title">Staking</div>
-          <p>Hold $WUPP, earn $WUPP. Rewarding long-term believers over short-term flippers.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-title">Governance</div>
-          <p>Every holder has a voice. Vote on marketing spend, burns, partnerships, and future development.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero" id="home">
+ <div class="hero-eyebrow">
+ <div class="eyebrow-dot"></div>
+ <div class="eyebrow-text">Now Live on Solana</div>
+ </div>
+ <h1>Wake Up &<br><span>Push Purposefully</span></h1>
+ <p class="hero-sub">A community-driven meme coin on Solana built for the grinders, the hustlers, and everybody fighting their way to the top. Real utility. Real culture. Real movement.</p>
+ <div class="hero-btns">
+ <button class="btn-gold" onclick="window.open('https://jup.ag','_blank')">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+ Buy $WUPP on Jupiter
+ </button>
+ <a href="https://www.wuppcoin.io/wupp_whitepaper.pdf" target="_blank" class="btn-dark">Read Whitepaper</a>
+ </div>
+ <div class="hero-stats">
+ <div class="stat"><div class="stat-val">1B</div><div class="stat-lbl">Total Supply</div></div>
+ <div class="stat"><div class="stat-val">1%</div><div class="stat-lbl">Auto Burn</div></div>
+ <div class="stat"><div class="stat-val">25%</div><div class="stat-lbl">Locked Liq.</div></div>
+ <div class="stat"><div class="stat-val">SOL</div><div class="stat-lbl">Network</div></div>
+ </div>
+</section>
 
-  <!-- HOW TO BUY -->
-  <section id="how-to-buy">
-    <div class="how-to-buy">
-      <div class="section-label">Get Started</div>
-      <h2 class="section-title">How To Buy $WUPP</h2>
-      <div class="divider"></div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <div class="step-icon">👛</div>
-          <h3>Get A Wallet</h3>
-          <p>Download Phantom Wallet from phantom.app. Create your wallet and back up your seed phrase somewhere safe.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <div class="step-icon">◎</div>
-          <h3>Buy SOL</h3>
-          <p>Purchase Solana (SOL) from any exchange — Coinbase, Binance, Kraken — and send it to your Phantom wallet.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <div class="step-icon">🔄</div>
-          <h3>Go To Jupiter</h3>
-          <p>Visit jup.ag — the best DEX on Solana. Connect your Phantom wallet and swap SOL for $WUPP.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <div class="step-icon">🔥</div>
-          <h3>Hold &amp; Earn</h3>
-          <p>You're in the WUPP Army. Stake your tokens, join the community, and grow with the movement.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- COUNTDOWN -->
+<section class="countdown">
+ <div class="cd-eyebrow">🚀 Phase 02 Launch Countdown</div>
+ <div class="cd-title">Launch is Coming. Get Ready.</div>
+ <div class="cd-grid">
+ <div class="cd-box"><div class="cd-num" id="cd-days">--</div><div class="cd-label">Days</div></div>
+ <div class="cd-box"><div class="cd-num" id="cd-hrs">--</div><div class="cd-label">Hours</div></div>
+ <div class="cd-box"><div class="cd-num" id="cd-min">--</div><div class="cd-label">Minutes</div></div>
+ <div class="cd-box"><div class="cd-num" id="cd-sec">--</div><div class="cd-label">Seconds</div></div>
+ </div>
+</section>
 
-  <!-- TOKENOMICS -->
-  <section class="tokenomics-section" id="tokenomics">
-    <div class="tokenomics-inner">
-      <div class="section-label">Distribution</div>
-      <h2 class="section-title">Tokenomics</h2>
-      <div class="divider"></div>
-      <div class="token-grid">
-        <div class="token-bars">
-          <div class="token-bar-item">
-            <div class="token-bar-header">
-              <span class="token-bar-name">Public Sale</span>
-              <span class="token-bar-pct">40%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
-          </div>
-          <div class="token-bar-item">
-            <div class="token-bar-header">
-              <span class="token-bar-name">Liquidity Pool</span>
-              <span class="token-bar-pct">25%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" style="width:25%"></div></div>
-          </div>
-          <div class="token-bar-item">
-            <div class="token-bar-header">
-              <span class="token-bar-name">Marketing</span>
-              <span class="token-bar-pct">15%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
-          </div>
-          <div class="token-bar-item">
-            <div class="token-bar-header">
-              <span class="token-bar-name">Community Rewards</span>
-              <span class="token-bar-pct">10%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" style="width:10%"></div></div>
-          </div>
-          <div class="token-bar-item">
-            <div class="token-bar-header">
-              <span class="token-bar-name">Development</span>
-              <span class="token-bar-pct">7%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" style="width:7%"></div></div>
-          </div>
-          <div class="token-bar-item">
-            <div class="token-bar-header">
-              <span class="token-bar-name">Burn Reserve</span>
-              <span class="token-bar-pct">3%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" style="width:3%"></div></div>
-          </div>
-        </div>
-        <div class="token-info">
-          <div class="token-info-card">
-            <h3>Token Details</h3>
-            <div class="token-detail"><span>Name</span><span>WUPP</span></div>
-            <div class="token-detail"><span>Ticker</span><span>$WUPP</span></div>
-            <div class="token-detail"><span>Network</span><span>Solana</span></div>
-            <div class="token-detail"><span>Standard</span><span>SPL Token</span></div>
-            <div class="token-detail"><span>Total Supply</span><span>1,000,000,000</span></div>
-            <div class="token-detail"><span>Burn Rate</span><span>1% per transaction</span></div>
-            <div class="token-detail"><span>Liquidity</span><span>Locked</span></div>
-            <div class="token-detail"><span>Mint Authority</span><span>Revoked</span></div>
-          </div>
-          <div class="token-info-card">
-            <h3>Security</h3>
-            <div class="token-detail"><span>Dev Vesting</span><span>90 day cliff</span></div>
-            <div class="token-detail"><span>Rug Pull</span><span>Impossible</span></div>
-            <div class="token-detail"><span>Anti-Snipe</span><span>Active</span></div>
-            <div class="token-detail"><span>Audit</span><span>Pending CertiK</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- CONTRACT -->
+<section class="contract" id="contract">
+ <div class="contract-title">Verify Us — Contract Address</div>
+ <div class="contract-box" onclick="copyContract()" id="contract-btn">
+ <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+ <span id="contract-text">Contract address posted on launch day — follow Twitter &amp; Discord</span>
+ </div>
+ <div class="contract-note">Always verify the contract address before buying. Never trust a DM.</div>
+</section>
 
-  <!-- ROADMAP -->
-  <section id="roadmap">
-    <div class="roadmap-inner">
-      <div class="section-label">The Plan</div>
-      <h2 class="section-title">Roadmap</h2>
-      <div class="divider"></div>
-      <div class="roadmap-phases">
-        <div class="phase active">
-          <div class="phase-num">Phase 01</div>
-          <h3>Build</h3>
-          <ul>
-            <li class="done">Smart contract development</li>
-            <li class="done">Website launch</li>
-            <li class="done">Twitter launch</li>
-            <li class="done">Whitepaper published</li>
-            <li class="in-progress">Community building</li>
-          </ul>
-        </div>
-        <div class="phase">
-          <div class="phase-num">Phase 02</div>
-          <h3>Launch</h3>
-          <ul>
-            <li>Deploy on Solana via Pump.fun</li>
-            <li>Lock liquidity on Raydium</li>
-            <li>List on Jupiter DEX</li>
-            <li>CoinGecko &amp; CMC submission</li>
-            <li>First NFT art drop</li>
-          </ul>
-        </div>
-        <div class="phase">
-          <div class="phase-num">Phase 03</div>
-          <h3>Grow</h3>
-          <ul>
-            <li>Influencer &amp; KOL campaign</li>
-            <li>TikTok &amp; Twitter viral push</li>
-            <li>WUPP Marketplace beta</li>
-            <li>Staking goes live</li>
-            <li>Tier 2 CEX listings</li>
-          </ul>
-        </div>
-        <div class="phase">
-          <div class="phase-num">Phase 04</div>
-          <h3>Dominate</h3>
-          <ul>
-            <li>Tier 1 CEX listings</li>
-            <li>WUPP clothing line drops</li>
-            <li>Governance DAO launch</li>
-            <li>Major brand partnerships</li>
-            <li>WUPP becomes a household name</li>
-          </ul>
-        </div>
-      </div>
+<!-- ABOUT -->
+<section class="section about" id="about">
+ <div class="section-eyebrow">What is WUPP</div>
+ <div class="section-title">More Than<br>A <span>Coin</span></div>
+ <p class="about-body">WUPP stands for <strong style="color:#fff;">Wake Up &amp; Push Purposefully.</strong> It's not just a ticker — it's a mindset. A movement for the people who refused to stay down, who wake up every day and push toward something better.<br><br>Built on Solana for lightning-fast, near-zero cost transactions, $WUPP combines the viral energy of meme culture with real-world utility — a marketplace, NFT integration, staking rewards, and community governance.<br><br>No rugs. No dumps. Liquidity locked, mint authority revoked, dev tokens vested. This is built to last.</p>
+ <div class="feat-cards">
+ <div class="feat-card">
+ <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+ <div><div class="feat-title">Marketplace</div><div class="feat-desc">Buy and sell digital goods, services, and art using $WUPP as the native currency.</div></div>
+ </div>
+ <div class="feat-card">
+ <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+ <div><div class="feat-title">NFTs</div><div class="feat-desc">Original art tied to the coin. NFT holders unlock exclusive staking pools and governance.</div></div>
+ </div>
+ <div class="feat-card">
+ <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+ <div><div class="feat-title">Staking</div><div class="feat-desc">Hold $WUPP, earn $WUPP. Rewarding long-term believers over short-term flippers.</div></div>
+ </div>
+ <div class="feat-card">
+ <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+ <div><div class="feat-title">Governance</div><div class="feat-desc">Every holder has a voice. Vote on marketing, burns, partnerships, and future development.</div></div>
+ </div>
+ </div>
+</section>
 
-      <!-- LAUNCH COUNTDOWN -->
-      <div class="countdown-wrap">
-        <div class="countdown-label">🚀 Phase 02 Launch Countdown</div>
-        <div class="countdown-timer">
-          <div class="countdown-unit">
-            <div class="countdown-num" id="cd-days">--</div>
-            <div class="countdown-unit-label">DAYS</div>
-          </div>
-          <div class="countdown-unit">
-            <div class="countdown-num" id="cd-hours">--</div>
-            <div class="countdown-unit-label">HOURS</div>
-          </div>
-          <div class="countdown-unit">
-            <div class="countdown-num" id="cd-mins">--</div>
-            <div class="countdown-unit-label">MINUTES</div>
-          </div>
-          <div class="countdown-unit">
-            <div class="countdown-num" id="cd-secs">--</div>
-            <div class="countdown-unit-label">SECONDS</div>
-          </div>
-        </div>
-      </div>
+<!-- HOW TO BUY -->
+<section class="section buy" id="buy">
+ <div class="section-eyebrow">Get Started</div>
+ <div class="section-title">How To Buy <span>$WUPP</span></div>
+ <div class="steps">
+ <div class="step">
+ <div class="step-num">01</div>
+ <div>
+ <div class="step-title">Get A Wallet</div>
+ <div class="step-desc">Download <a href="https://phantom.app" target="_blank" style="color:var(--gold);text-decoration:none;">Phantom Wallet</a> from phantom.app. Create your wallet and back up your seed phrase somewhere safe.</div>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-num">02</div>
+ <div>
+ <div class="step-title">Buy SOL</div>
+ <div class="step-desc">Purchase Solana (SOL) from any exchange — Coinbase, Binance, Kraken — and send it to your Phantom wallet.</div>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-num">03</div>
+ <div>
+ <div class="step-title">Go To Jupiter</div>
+ <div class="step-desc">Visit <a href="https://jup.ag" target="_blank" style="color:var(--gold);text-decoration:none;">jup.ag</a> — the best DEX on Solana. Connect your Phantom wallet and swap SOL for $WUPP.</div>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-num">04</div>
+ <div>
+ <div class="step-title">Hold &amp; Earn</div>
+ <div class="step-desc">You're in the WUPP Army. Stake your tokens, join the community, and grow with the movement.</div>
+ </div>
+ </div>
+ </div>
+</section>
 
-    </div>
-  </section>
+<!-- TOKENOMICS -->
+<section class="section tokenomics" id="tokenomics">
+ <div class="section-eyebrow">Distribution</div>
+ <div class="section-title">Token<span>omics</span></div>
+ <div class="tok-layout">
+ <div>
+ <div class="tok-bars">
+ <div class="tok-row"><span class="tok-name">Public Sale</span><div class="tok-track"><div class="tok-fill" style="width:40%"></div></div><span class="tok-pct">40%</span></div>
+ <div class="tok-row"><span class="tok-name">Liquidity Pool</span><div class="tok-track"><div class="tok-fill" style="width:25%;opacity:.85"></div></div><span class="tok-pct">25%</span></div>
+ <div class="tok-row"><span class="tok-name">Marketing</span><div class="tok-track"><div class="tok-fill" style="width:15%;opacity:.7"></div></div><span class="tok-pct">15%</span></div>
+ <div class="tok-row"><span class="tok-name">Community Rewards</span><div class="tok-track"><div class="tok-fill" style="width:10%;opacity:.6"></div></div><span class="tok-pct">10%</span></div>
+ <div class="tok-row"><span class="tok-name">Development</span><div class="tok-track"><div class="tok-fill" style="width:7%;opacity:.5"></div></div><span class="tok-pct">7%</span></div>
+ <div class="tok-row"><span class="tok-name">Burn Reserve</span><div class="tok-track"><div class="tok-fill" style="width:3%;opacity:.4"></div></div><span class="tok-pct">3%</span></div>
+ </div>
+ </div>
+ <div class="tok-details">
+ <div class="tok-card"><div class="tok-card-label">Name</div><div class="tok-card-val">WUPP</div></div>
+ <div class="tok-card"><div class="tok-card-label">Ticker</div><div class="tok-card-val">$WUPP</div></div>
+ <div class="tok-card"><div class="tok-card-label">Network</div><div class="tok-card-val">Solana</div></div>
+ <div class="tok-card"><div class="tok-card-label">Standard</div><div class="tok-card-val">SPL Token</div></div>
+ <div class="tok-card"><div class="tok-card-label">Total Supply</div><div class="tok-card-val">1,000,000,000</div></div>
+ <div class="tok-card"><div class="tok-card-label">Burn Rate</div><div class="tok-card-val">1% per tx</div></div>
+ <div class="tok-card"><div class="tok-card-label">Liquidity</div><div class="tok-card-val">Locked</div></div>
+ <div class="tok-card"><div class="tok-card-label">Mint Auth</div><div class="tok-card-val">Revoked</div></div>
+ <div class="tok-card"><div class="tok-card-label">Dev Vesting</div><div class="tok-card-val">90-day cliff</div></div>
+ <div class="tok-card"><div class="tok-card-label">Audit</div><div class="tok-card-val">Pending CertiK</div></div>
+ </div>
+ </div>
+</section>
 
-  <!-- CONTRACT -->
-  <section class="contract-section" style="background: var(--dark2); border-top: 1px solid #ffffff08;">
-    <div class="contract-inner">
-      <div class="section-label">Verify Us</div>
-      <h2 class="section-title">Contract Address</h2>
-      <div class="divider" style="margin: 0 auto 20px;"></div>
-      <p style="color: var(--gray); font-size: 15px;">Always verify the contract address before buying. Never trust a DM.</p>
-      <div class="contract-box">
-        <div class="contract-address" id="contract-addr">Contract address will be posted here on launch day. Follow <a href="https://twitter.com/WUPPcoin" style="color:var(--gold)">Twitter</a> and join the <a href="https://discord.gg/RkQp5pa9n7" style="color:var(--gold)">Discord</a> for the announcement.</div>
-        <button class="copy-btn" onclick="copyContract()">Copy</button>
-      </div>
-    </div>
-  </section>
+<!-- ROADMAP -->
+<section class="section roadmap" id="roadmap">
+ <div class="section-eyebrow">The Plan</div>
+ <div class="section-title">Road<span>map</span></div>
+ <div class="phases">
+ <div class="phase">
+ <div class="phase-header">
+ <div class="phase-num">Phase 01</div>
+ <div class="phase-name">Build</div>
+ <span class="phase-badge badge-live">✓ Now</span>
+ </div>
+ <ul class="phase-items">
+ <li>Smart contract development</li>
+ <li>Website launch at wuppcoin.io</li>
+ <li>Twitter / X and Telegram community launch</li>
+ <li>Whitepaper published</li>
+ <li>Pre-launch community building</li>
+ </ul>
+ </div>
+ <div class="phase">
+ <div class="phase-header">
+ <div class="phase-num">Phase 02</div>
+ <div class="phase-name">Launch</div>
+ <span class="phase-badge badge-live">30–60 Days</span>
+ </div>
+ <ul class="phase-items">
+ <li>Deploy on Solana via Pump.fun</li>
+ <li>Lock liquidity on Raydium DEX</li>
+ <li>List on Jupiter DEX aggregator</li>
+ <li>Submit to CoinGecko &amp; CoinMarketCap</li>
+ <li>First NFT art drop</li>
+ </ul>
+ </div>
+ <div class="phase">
+ <div class="phase-header">
+ <div class="phase-num">Phase 03</div>
+ <div class="phase-name">Grow</div>
+ <span class="phase-badge badge-soon">60–180 Days</span>
+ </div>
+ <ul class="phase-items">
+ <li>Influencer &amp; KOL marketing campaign</li>
+ <li>TikTok and Twitter viral push</li>
+ <li>WUPP Marketplace beta launch</li>
+ <li>Staking rewards go live</li>
+ <li>Tier 2 CEX listings</li>
+ </ul>
+ </div>
+ <div class="phase">
+ <div class="phase-header">
+ <div class="phase-num">Phase 04</div>
+ <div class="phase-name">Dominate</div>
+ <span class="phase-badge badge-soon">180+ Days</span>
+ </div>
+ <ul class="phase-items">
+ <li>Tier 1 CEX listings (Binance, Coinbase)</li>
+ <li>WUPP clothing line launch</li>
+ <li>Governance DAO launch</li>
+ <li>Major brand partnerships</li>
+ <li>WUPP becomes a household name</li>
+ </ul>
+ </div>
+ </div>
+</section>
 
-  <!-- COMMUNITY -->
-  <section class="community-section" id="community">
-    <div class="community-inner">
-      <div class="section-label">Join Us</div>
-      <h2 class="section-title">The WUPP Army</h2>
-      <div class="divider" style="margin: 0 auto 20px;"></div>
-      <p style="color: var(--gray); font-size: 17px; max-width: 500px; margin: 0 auto;">
-        We build together. We grow together. Join the movement and be part of something real.
-      </p>
-      <div class="social-links">
-        <a href="https://twitter.com/WUPPcoin" target="_blank" class="social-btn">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Twitter / X
-        </a>
-        <a href="https://discord.gg/RkQp5pa9n7" target="_blank" class="social-btn">
-          <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-          Discord
-        </a>
-        <a href="wupp_whitepaper.pdf" target="_blank" class="social-btn">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-          Whitepaper
-        </a>
-      </div>
-    </div>
-  </section>
+<!-- COMMUNITY -->
+<section class="community" id="community">
+ <h2>Join the<br><span>WUPP Army</span></h2>
+ <p>We build together. We grow together. Join the movement and be part of something real.</p>
+ <div class="comm-btns">
+ <a href="https://twitter.com/WUPPcoin" target="_blank" class="comm-solid">Twitter / X</a>
+ <a href="https://discord.gg/RkQp5pa9n7" target="_blank" class="comm-ghost">Discord</a>
+ <a href="https://www.wuppcoin.io/wupp_whitepaper.pdf" target="_blank" class="comm-ghost">Whitepaper</a>
+ </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo"><span class="w">W</span><span class="upp">UPP</span></div>
-    <p>$WUPP is a community meme token on Solana. It is not a security, investment product, or financial instrument. Always do your own research. Never invest more than you can afford to lose.</p>
-    <small>© 2026 WUPP. All rights reserved.</small>
-  </footer>
+<!-- FOOTER -->
+<footer class="footer">
+ <div class="footer-left">
+ <div class="footer-logo">
+ <div class="footer-logo-mark">W</div>
+ WUPP
+ </div>
+ <div class="footer-copy">© 2026 WUPP. All rights reserved.</div>
+ </div>
+ <div class="footer-links">
+ <a href="#about">About</a>
+ <a href="#buy">Buy</a>
+ <a href="#tokenomics">Tokenomics</a>
+ <a href="#roadmap">Roadmap</a>
+ <a href="#community">Community</a>
+ <a href="https://twitter.com/WUPPcoin" target="_blank">Twitter</a>
+ <a href="https://discord.gg/RkQp5pa9n7" target="_blank">Discord</a>
+ <a href="https://www.wuppcoin.io/wupp_whitepaper.pdf" target="_blank">Whitepaper</a>
+ </div>
+ <div class="footer-disc">$WUPP is a community meme token on Solana. It is not a security, investment product, or financial instrument. Always do your own research. Never invest more than you can afford to lose.</div>
+</footer>
 
-  <script>
-    // ── COPY CONTRACT ──
-    // Works on both http and https with fallback
-    function copyContract() {
-      const addr = document.getElementById('contract-addr').innerText;
-      const btn  = document.querySelector('.copy-btn');
+<script>
+/* ── COUNTDOWN — fixed target: June 20, 2026 midnight PT ── */
+(function(){
+ // June 20, 2026 at midnight Pacific Time (PDT = UTC-7)
+ var target = new Date('2026-06-20T07:00:00Z');
+ function pad(n){return String(n).padStart(2,'0');}
+ function tick(){
+  var diff = target - Date.now();
+  if(diff <= 0){
+   ['cd-days','cd-hrs','cd-min','cd-sec'].forEach(function(id){
+    document.getElementById(id).textContent='00';
+   });
+   return;
+  }
+  document.getElementById('cd-days').textContent = pad(Math.floor(diff/86400000));
+  document.getElementById('cd-hrs').textContent  = pad(Math.floor((diff%86400000)/3600000));
+  document.getElementById('cd-min').textContent  = pad(Math.floor((diff%3600000)/60000));
+  document.getElementById('cd-sec').textContent  = pad(Math.floor((diff%60000)/1000));
+ }
+ tick();
+ setInterval(tick,1000);
+})();
 
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(addr).then(() => {
-          btn.innerText = 'Copied!';
-          setTimeout(() => btn.innerText = 'Copy', 2000);
-        }).catch(() => fallbackCopy(addr, btn));
-      } else {
-        fallbackCopy(addr, btn);
-      }
-    }
+/* ── CONTRACT COPY ── */
+function copyContract(){
+ var addr = 'Contract address posted on launch day — follow Twitter & Discord';
+ if(navigator.clipboard){navigator.clipboard.writeText(addr);}
+ var origText = document.getElementById('contract-text').textContent;
+ document.getElementById('contract-text').textContent = 'Copied!';
+ setTimeout(function(){document.getElementById('contract-text').textContent = origText;}, 2000);
+}
 
-    function fallbackCopy(text, btn) {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.opacity  = '0';
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      try {
-        document.execCommand('copy');
-        btn.innerText = 'Copied!';
-      } catch(e) {
-        btn.innerText = 'Copy manually';
-      }
-      document.body.removeChild(ta);
-      setTimeout(() => btn.innerText = 'Copy', 2000);
-    }
+/* ── MOBILE MENU ── */
+function toggleMenu(){
+ var links = document.querySelector('.nav-links');
+ var cta   = document.querySelector('.nav-cta');
+ if(links.style.display === 'flex'){
+  links.style.display = '';
+  cta.style.display   = '';
+ } else {
+  links.style.display        = 'flex';
+  links.style.flexDirection  = 'column';
+  links.style.position       = 'absolute';
+  links.style.top            = '65px';
+  links.style.left           = '0';
+  links.style.right          = '0';
+  links.style.background     = '#0a0a0a';
+  links.style.padding        = '16px 20px';
+  links.style.borderBottom   = '0.5px solid rgba(255,255,255,0.08)';
+  cta.style.display          = 'none';
+ }
+}
 
-    // ── TOKENOMICS BAR ANIMATION ──
-    // Store target widths, set to 0 on load, animate in when visible
-    const bars = document.querySelectorAll('.bar-fill');
-    const targets = [];
-
-    bars.forEach(bar => {
-      targets.push(bar.style.width);
-      bar.style.width = '0%';
-      bar.style.transition = 'none';
-    });
-
-    const barObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.bar-fill').forEach((bar, i) => {
-            const allBars = document.querySelectorAll('.bar-fill');
-            const idx = Array.from(allBars).indexOf(bar);
-            setTimeout(() => {
-              bar.style.transition = 'width 1s ease';
-              bar.style.width = targets[idx];
-            }, i * 120);
-          });
-          barObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.token-bars').forEach(el => barObserver.observe(el));
-
-    // ── SMOOTH NAV HIGHLIGHT ──
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav ul a');
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.style.color = '';
-            if (link.getAttribute('href') === '#' + entry.target.id) {
-              link.style.color = '#f0a500';
-            }
-          });
-        }
-      });
-    }, { threshold: 0.5 });
-
-    sections.forEach(s => navObserver.observe(s));
-  </script>
-
-  <script>
-    // WUPP Phase 02 Launch Countdown — target: June 20, 2026
-    (function() {
-      var target = new Date('2026-06-20T00:00:00-07:00').getTime();
-      function tick() {
-        var now = Date.now();
-        var diff = target - now;
-        if (diff <= 0) {
-          document.getElementById('cd-days').textContent = '00';
-          document.getElementById('cd-hours').textContent = '00';
-          document.getElementById('cd-mins').textContent = '00';
-          document.getElementById('cd-secs').textContent = '00';
-          return;
-        }
-        var days  = Math.floor(diff / 86400000);
-        var hours = Math.floor((diff % 86400000) / 3600000);
-        var mins  = Math.floor((diff % 3600000) / 60000);
-        var secs  = Math.floor((diff % 60000) / 1000);
-        document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
-        document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-        document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
-        document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
-      }
-      tick();
-      setInterval(tick, 1000);
-    })();
-  </script>
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+ a.addEventListener('click',function(e){
+  var t = document.querySelector(this.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+ });
+});
+</script>
 </body>
 </html>
