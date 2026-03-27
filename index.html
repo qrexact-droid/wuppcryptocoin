@@ -136,7 +136,9 @@ body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans
 .badge-live{background:var(--gold-dim);color:var(--gold);border:0.5px solid var(--gold-border);}
 .badge-soon{background:rgba(255,255,255,0.05);color:var(--muted);border:0.5px solid var(--border);}
 .phase-items{list-style:none;display:flex;flex-direction:column;gap:7px;}
-.phase-items li{font-size:13px;color:var(--muted);padding-left:16px;position:relative;line-height:1.5;}
+.phase-items li{font-size:13px;color:var(--muted);padding-left:20px;position:relative;line-height:1.5;}
+.phase-items li.done{color:rgba(255,255,255,0.75);}
+.phase-items li.done::before{content:"✓";color:#4ade80;font-size:12px;font-weight:700;}
 .phase-items li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:11px;}
 
 /* ── COMMUNITY ── */
@@ -360,11 +362,11 @@ body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans
  <span class="phase-badge badge-live">✓ Now</span>
  </div>
  <ul class="phase-items">
- <li>Smart contract development</li>
- <li>Website launch at wuppcoin.io</li>
- <li>Twitter / X and Telegram community launch</li>
- <li>Whitepaper published</li>
- <li>Pre-launch community building</li>
+ <li class="done">Smart contract development</li>
+ <li class="done">Website launch at wuppcoin.io</li>
+ <li class="done">Twitter / X and Telegram community launch</li>
+ <li class="done">Whitepaper published</li>
+ <li class="done">Pre-launch community building</li>
  </ul>
  </div>
  <div class="phase">
